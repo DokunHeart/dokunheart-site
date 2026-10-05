@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 守りの決まり(2026-10-03、MYSTICA の友人「公開するならセキュリティーをしっかり」)。
+     読み込んでよいのは、このページ自身のファイルと Google の文字だけ。ほかの物は動かさない -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>DokunHeart</title>
+<meta name="description" content="声で話せる AI のヒロインと冒険する、iPhone の 3D アクション RPG。3D AI コンパニオンと、ひとりでも、みんなとでも。">
+<!-- X(旧 Twitter)などにリンクを貼った時のカード -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dokunheart.com/">
+<meta property="og:title" content="DokunHeart">
+<meta property="og:description" content="声で話せる AI のヒロインと冒険する、iPhone の 3D アクション RPG。3D AI コンパニオンと、ひとりでも、みんなとでも。">
+<meta property="og:image" content="https://dokunheart.com/images/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@DokunHeart">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0714;
+    --bg2: #160c22;
+    --card: #1e1230;
+    --line: #3a2452;
+    --text: #f3ecfa;
+    --muted: #b9a8cc;
+    --pink: #ff5fae;
+    --violet: #9a6bff;
+    --fire: #ff7a2e;
+    --thunder: #ffe46e;
+    --water: #66c2ff;
+    --poison: #74ff4d;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: "Noto Sans JP", system-ui, sans-serif; line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* 言葉の切り替え: 選んでいない方を隠す */
+  html[lang="ja"] .en, html[lang="en"] .ja { display: none !important; }
+
+  a { color: var(--pink); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  header.top {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(13, 7, 20, 0.82); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .logo { font-weight: 900; letter-spacing: 0.08em; font-size: 18px; color: var(--text); text-decoration: none; }
+  .logo span { color: var(--pink); }
+  nav { display: flex; gap: 18px; align-items: center; font-size: 14px; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--text); }
+  .lang { border: 1px solid var(--line); background: transparent; color: var(--text); border-radius: 999px; padding: 4px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+  @media (max-width: 720px) { nav a.nav-link { display: none; } }
+
+  /* 一番上: 画面いっぱいのヒロインの絵の上に、文字を重ねる(2026-10-03、MYSTICA「写真の上から字を入れよう」) */
+  .hero { position: relative; min-height: min(100svh, 980px); display: flex; align-items: flex-end; overflow: hidden; background: #e9e7ec; }
+  .hero .bg { position: absolute; inset: 0; }
+  .hero .bg video, .hero .bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block; }
+  /* 絵が白っぽいので、文字の後ろだけ暗くする */
+  .hero .bg::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(13, 7, 20, 0.96) 0%, rgba(13, 7, 20, 0.78) 30%, rgba(13, 7, 20, 0.15) 62%, rgba(13, 7, 20, 0) 80%); }
+  .hero .wrap { position: relative; width: 100%; padding-top: 120px; padding-bottom: 64px; text-align: center; }
+  .hero h1 { font-size: clamp(48px, 9vw, 104px); line-height: 1; margin: 0 0 16px; font-weight: 900; letter-spacing: 0.02em; text-shadow: 0 6px 30px rgba(0, 0, 0, 0.45); }
+  .hero h1 span { background: linear-gradient(90deg, var(--pink), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero .lead { font-size: clamp(18px, 2.4vw, 23px); margin: 0 auto 12px; font-weight: 700; max-width: 760px; }
+  .hero p { color: #e2d6ef; margin: 0 auto 22px; max-width: 720px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; justify-content: center; }
+  .badge { border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 999px; padding: 4px 12px; font-size: 13px; color: #eadff5; background: rgba(13, 7, 20, 0.35); }
+  .cta { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .btn { display: inline-block; padding: 12px 22px; border-radius: 12px; font-weight: 700; text-decoration: none; }
+  .btn.main { background: linear-gradient(90deg, var(--pink), var(--violet)); color: #fff; }
+  .btn.sub { border: 1px solid var(--line); color: var(--text); }
+
+  /* 写真の場所(写真が届くまでの仮の枠) */
+    position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--line);
+    background: linear-gradient(135deg, #2a1640, #120a1c); aspect-ratio: 9 / 16; max-height: 620px; margin: 0 auto; width: 100%;
+  }
+  /* 写真はキャラクリで作ったキャラクターがそろってから載せる(2026-10-03、MYSTICA)。それまでは「準備中」 */
+  .shot .soon { border: 1px dashed rgba(255, 255, 255, 0.25); border-radius: 999px; padding: 6px 16px; letter-spacing: 0.06em; }
+
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  section.alt { background: var(--bg2); }
+  h2 { font-size: clamp(26px, 4vw, 36px); margin: 0 0 8px; font-weight: 900; }
+
+  @media (max-width: 860px) { .split { grid-template-columns: 1fr; } .split.rev > :first-child { order: 0; } }
+
+  ul.points { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  ul.points li { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+  ul.points b { display: block; margin-bottom: 2px; }
+  ul.points span.d { color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 640px) { .elements { grid-template-columns: repeat(2, 1fr); } }
+
+  @media (max-width: 860px) { .grid3 { grid-template-columns: 1fr; } }
+
+  @media (max-width: 860px) { .socket-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 860px) { .engine-grid { grid-template-columns: repeat(2, 1fr); } }
+    background: linear-gradient(90deg, #ffffff, #d9c8ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+
+  footer { border-top: 1px solid var(--line); padding: 36px 0 48px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .credits b { display: block; margin-top: 14px; color: var(--text); font-size: 13px; letter-spacing: 0.08em; }
+  .credits ul { margin: 6px 0 0; padding-left: 18px; font-size: 13px; }
+  .credits .recruit { margin: 12px 0 0; color: var(--pink); font-size: 13px; }
+  .soon { background: #05030a; text-align: center; padding: 120px 0 130px; border-top: 1px solid var(--line); }
+  .soon-mark { font-weight: 900; font-size: clamp(36px, 7vw, 72px); letter-spacing: 0.18em; background: linear-gradient(90deg, var(--pink), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .soon p { color: var(--muted); font-size: 17px; margin: 18px 0 28px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#">DOKUN<span>HEART</span></a>
+    <nav>
+      <button class="lang" id="lang" type="button">English</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- 一番上 -->
+  <div class="hero">
+    <!-- 背景: ヒロインの全身の絵が届くまで、仮にタイトル画面の動画 -->
+    <div class="bg"><video src="media/title.mp4" poster="images/title.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+    <div class="wrap">
+      <div>
+        <h1>Dokun<span>Heart</span></h1>
+        <p class="lead">
+          <span class="ja">声で話せる AI のヒロインと、宇宙を冒険する。</span>
+          <span class="en">Adventure across the stars with an AI heroine you can actually talk to.</span>
+        </p>
+        <p>
+          <span class="ja">話しかければ、表情を変えて、声で答えてくれる。戦えば、隣で一緒に剣を振る。iPhone で遊ぶ <span style="white-space: nowrap;">3D アクション RPG</span> です。ひとりでも、みんなとでも。</span>
+          <span class="en">Speak to her and she answers in her own voice, with her own expressions. Fight, and she swings her sword right beside you. A 3D action RPG for iPhone — play solo or with friends.</span>
+        </p>
+        <div class="badges">
+          <span class="badge">iPhone</span>
+          <span class="badge"><span class="ja">3D アクション RPG</span><span class="en">3D Action RPG</span></span>
+          <span class="badge"><span class="ja">3D AI コンパニオン</span><span class="en">3D AI Companion</span></span>
+          <span class="badge"><span class="ja">開発中</span><span class="en">In development</span></span>
+        </div>
+        <div class="cta">
+          <a class="btn main" href="https://x.com/DokunHeart" target="_blank" rel="noopener"><span class="ja">X で最新情報を見る</span><span class="en">Follow on X</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2026-10-05、MYSTICA「トップから下は非公開にして、近日公開としてブラックアウト」。ゲームの仕組みが分かってしまうので、中身ごと公開から外した
+       (前の全文は、ゲーム本体の非公開の記録に残っている) -->
+  <section id="soon" class="soon">
+    <div class="wrap">
+      <div class="soon-mark">COMING SOON</div>
+      <p><span class="ja">ゲームの詳しい情報は、近日公開します。<br>最新情報は X でお知らせします。</span><span class="en">More about the game is coming soon.<br>Follow us on X for the latest news.</span></p>
+      <a class="btn main" href="https://x.com/DokunHeart" target="_blank" rel="noopener"><span class="ja">X をフォローする</span><span class="en">Follow on X</span></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="credits">
+      <div>© 2026 DokunHeart</div>
+      <b><span class="ja">クレジット</span><span class="en">Credits</span></b>
+      <ul>
+        <li><span class="ja">キャラクターの3Dモデルは VRoid Studio で作ったものです(テスト段階での使用)。</span><span class="en">Character 3D models were made with VRoid Studio (used during testing).</span></li>
+        <li><span class="ja">タイトルの絵は Grok(xAI)を使って作りました。</span><span class="en">Title art created with Grok by xAI.</span></li>
+        <li><span class="ja">ゲームエンジン: Unity。Unity は Unity Technologies(またはその関連会社)の商標です。</span><span class="en">Game engine: Unity. Unity is a trademark of Unity Technologies or its affiliates.</span></li>
+      </ul>
+      <p class="recruit"><span class="ja">フルスクラッチの3Dモデルを作ってくださる方を募集しています。X の DM か メールでご連絡ください。</span><span class="en">We're looking for 3D artists to create fully original character models. Reach us by X DM or email.</span></p>
+      <!-- 2026-10-05、MYSTICA「このゲームを一緒に開発してくれる人も募集していますと付けておいて」 -->
+      <p class="recruit"><span class="ja">DokunHeart を一緒に開発してくださる仲間も募集しています。X の DM か メールでご連絡ください。</span><span class="en">We're also looking for teammates to develop DokunHeart together. Reach us by X DM or email.</span></p>
+    </div>
+    <div>
+      <a href="https://x.com/DokunHeart" target="_blank" rel="noopener">X @DokunHeart</a> ·
+      <a href="mailto:info@dokunheart.net">info@dokunheart.net</a>
+    </div>
+  </div>
+</footer>
+
+<script src="lang.js"></script>
+</body>
+</html>

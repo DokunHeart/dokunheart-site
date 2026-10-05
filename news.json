@@ -1,0 +1,19 @@
+{
+  "_説明": "ゲームのホーム画面の「お知らせ」(HomeScreen.cs)が読みに行く、お知らせの一覧(1か所)。新しい物を上に足す。日付は 年-月-日。直したら Claude に公式サイトへ送ってもらう(アプリの作り直しは要らない)",
+  "items": [
+    {
+      "date": "2026-10-04",
+      "title_ja": "公式サイトを公開しました",
+      "title_en": "Our official website is live",
+      "body_ja": "DokunHeart の公式サイト https://dokunheart.com を公開しました。ゲームの紹介、ハートソケット、これからの予定を載せています。",
+      "body_en": "The official DokunHeart website https://dokunheart.com is now live, with an introduction to the game, the Heart Socket, and what's coming next."
+    },
+    {
+      "date": "2026-10-02",
+      "title_ja": "みんなで遊べるサーバーを試しています",
+      "title_en": "Testing the multiplayer server",
+      "body_ja": "ヨーロッパのサーバーで、ほかのプレイヤーと同じ場所に入れるようになりました。見た目・武器・動き・属性の光まで届きます。敵の共有は準備中です。",
+      "body_en": "You can now meet other players in the same place on our European server — looks, weapons, moves and elemental effects included. Shared enemies are on the way."
+    }
+  ]
+}
