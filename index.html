@@ -90,6 +90,12 @@
 
   section { padding: 72px 0; border-top: 1px solid var(--line); }
   section.alt { background: var(--bg2); }
+  /* お知らせ(2026-10-21 設立の時に足した)。中身はお知らせだけ。ゲームの仕組みは書かない */
+  .news { padding: 48px 0; }
+  .news h2 { font-size: 15px; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 16px; }
+  .news ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .news li { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; }
+  .news time { color: var(--pink); font-variant-numeric: tabular-nums; font-size: 14px; }
   h2 { font-size: clamp(26px, 4vw, 36px); margin: 0 0 8px; font-weight: 900; }
 
   @media (max-width: 860px) { .split { grid-template-columns: 1fr; } .split.rev > :first-child { order: 0; } }
@@ -160,6 +166,15 @@
 
   <!-- 2026-10-05、MYSTICA「トップから下は非公開にして、近日公開としてブラックアウト」。ゲームの仕組みが分かってしまうので、中身ごと公開から外した
        (前の全文は、ゲーム本体の非公開の記録に残っている) -->
+  <section id="news" class="news">
+    <div class="wrap">
+      <h2>NEWS</h2>
+      <ul>
+        <li><time datetime="2026-10-21">2026.10.21</time><span><span class="ja">DokunHeart合同会社を設立しました。</span><span class="en">DokunHeart LLC was officially founded.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
   <section id="soon" class="soon">
     <div class="wrap">
       <div class="soon-mark">COMING SOON</div>
@@ -172,7 +187,7 @@
 <footer>
   <div class="wrap">
     <div class="credits">
-      <div>© 2026 DokunHeart</div>
+      <div>© 2026 <span class="ja">DokunHeart合同会社</span><span class="en">DokunHeart LLC</span></div>
       <b><span class="ja">クレジット</span><span class="en">Credits</span></b>
       <ul>
         <li><span class="ja">キャラクターの3Dモデルは VRoid Studio で作ったものです(テスト段階での使用)。</span><span class="en">Character 3D models were made with VRoid Studio (used during testing).</span></li>

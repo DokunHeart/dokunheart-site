@@ -2,6 +2,13 @@
   "_説明": "ゲームのホーム画面の「お知らせ」(HomeScreen.cs)が読みに行く、お知らせの一覧(1か所)。新しい物を上に足す。日付は 年-月-日。直したら Claude に公式サイトへ送ってもらう(アプリの作り直しは要らない)",
   "items": [
     {
+      "date": "2026-10-21",
+      "title_ja": "DokunHeart合同会社を設立しました",
+      "title_en": "DokunHeart LLC was founded",
+      "body_ja": "2026年10月21日、DokunHeart合同会社を設立しました。これからもDokunHeartを育てていきます。よろしくお願いします。",
+      "body_en": "On October 21, 2026, DokunHeart LLC was officially founded. We'll keep growing DokunHeart. Thank you for your support!"
+    },
+    {
       "date": "2026-10-04",
       "title_ja": "公式サイトを公開しました",
       "title_en": "Our official website is live",
