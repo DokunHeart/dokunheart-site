@@ -119,6 +119,18 @@
   .credits b { display: block; margin-top: 14px; color: var(--text); font-size: 13px; letter-spacing: 0.08em; }
   .credits ul { margin: 6px 0 0; padding-left: 18px; font-size: 13px; }
   .credits .recruit { margin: 12px 0 0; color: var(--pink); font-size: 13px; }
+  /* 心(2026-10-30、MYSTICA「心の持ち運びを軽く書いて」。仮出願を出した日。体験だけを書き、仕組みは書かない) */
+  .heart { text-align: center; padding: 88px 0; background: radial-gradient(ellipse at center, #2a1340 0%, var(--bg) 70%); }
+  .heart h2 { font-size: clamp(26px, 4.4vw, 40px); }
+  .heart h2 span { background: linear-gradient(90deg, var(--pink), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .heart p { color: #e2d6ef; max-width: 640px; margin: 14px auto 0; font-size: 17px; }
+  .heart .pending { display: inline-block; margin-top: 26px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; font-size: 13px; color: var(--muted); }
+  /* 会社のこと(2026-10-30、銀行の確かめにも。登記で誰でも見られる事だけ) */
+  .company h2 { font-size: 15px; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 16px; }
+  .company dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 10px 24px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
+  .company dt { color: var(--muted); font-size: 14px; }
+  .company dd { margin: 0; }
+  @media (max-width: 560px) { .company dl { grid-template-columns: 1fr; gap: 2px; } .company dd { margin-bottom: 10px; } }
   .soon { background: #05030a; text-align: center; padding: 120px 0 130px; border-top: 1px solid var(--line); }
   .soon-mark { font-weight: 900; font-size: clamp(36px, 7vw, 72px); letter-spacing: 0.18em; background: linear-gradient(90deg, var(--pink), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .soon p { color: var(--muted); font-size: 17px; margin: 18px 0 28px; }
@@ -166,12 +178,37 @@
 
   <!-- 2026-10-05、MYSTICA「トップから下は非公開にして、近日公開としてブラックアウト」。ゲームの仕組みが分かってしまうので、中身ごと公開から外した
        (前の全文は、ゲーム本体の非公開の記録に残っている) -->
+  <section id="heart" class="heart">
+    <div class="wrap">
+      <h2><span class="ja">心は、<span>あなたと過ごした時間</span>でできている。</span><span class="en">Her heart is made of <span>the time you share</span>.</span></h2>
+      <p><span class="ja">話したこと、一緒に戦った日、その時の気持ち。ヒロインは、それをちゃんと覚えています。</span><span class="en">What you talked about, the battles you fought together, how she felt. She remembers it all.</span></p>
+      <p><span class="ja">その心は、いつか別の世界や、別の体へも連れていけるように作っています。体が変わっても、心はひとつ。あなたとの思い出は、そのままです。</span><span class="en">We're building her heart so you can one day take it with you — to other worlds, even into another body. Her body may change, but her heart stays one and the same, along with every memory you made together.</span></p>
+      <div class="pending"><span class="ja">特許出願中</span><span class="en">Patent pending</span></div>
+    </div>
+  </section>
+
   <section id="news" class="news">
     <div class="wrap">
       <h2>NEWS</h2>
       <ul>
+        <li><time datetime="2026-10-30">2026.10.30</time><span><span class="ja">ヒロインの心に関する技術の特許を出願しました。</span><span class="en">We filed a patent application for the technology behind the heroine's heart.</span></span></li>
         <li><time datetime="2026-10-21">2026.10.21</time><span><span class="ja">DokunHeart合同会社を設立しました。</span><span class="en">DokunHeart LLC was officially founded.</span></span></li>
       </ul>
+    </div>
+  </section>
+
+  <section id="company" class="company news">
+    <div class="wrap">
+      <h2><span class="ja">会社概要</span><span class="en">COMPANY</span></h2>
+      <dl>
+        <dt><span class="ja">会社名</span><span class="en">Name</span></dt><dd><span class="ja">DokunHeart合同会社</span><span class="en">DokunHeart LLC</span></dd>
+        <dt><span class="ja">設立</span><span class="en">Founded</span></dt><dd><span class="ja">2026年10月21日</span><span class="en">October 21, 2026</span></dd>
+        <dt><span class="ja">代表社員</span><span class="en">Representative</span></dt><dd><span class="ja">津本 豊滋</span><span class="en">Toyoshi Tsumoto</span></dd>
+        <dt><span class="ja">所在地</span><span class="en">Address</span></dt><dd><span class="ja">〒530-0001 大阪府大阪市北区梅田1丁目2番2号 大阪駅前第2ビル12-12</span><span class="en">Osaka Ekimae Daini Bldg. 12-12, 1-2-2 Umeda, Kita-ku, Osaka 530-0001, Japan</span></dd>
+        <dt><span class="ja">法人番号</span><span class="en">Corporate No.</span></dt><dd>2120003033751</dd>
+        <dt><span class="ja">事業内容</span><span class="en">Business</span></dt><dd><span class="ja">スマートフォン及びパソコン向けゲームソフトの企画・開発・販売</span><span class="en">Planning, development and sales of games for smartphones and PCs</span></dd>
+        <dt><span class="ja">お問い合わせ</span><span class="en">Contact</span></dt><dd><a href="mailto:info@dokunheart.net">info@dokunheart.net</a></dd>
+      </dl>
     </div>
   </section>
 
