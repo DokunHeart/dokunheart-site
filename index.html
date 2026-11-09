@@ -125,6 +125,8 @@
   /* 見出しは言葉のまとまりの間でだけ折り返す(携帯で「でで/きている」と切れた。2026-10-30 MYSTICA) */
   .heart h2 span span { display: inline-block; background: linear-gradient(90deg, var(--pink), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .heart p { color: #e2d6ef; max-width: 640px; margin: 14px auto 0; font-size: 17px; }
+  /* 心の技術の名前(2026-11-09。名前だけ載せ、仕組みは書かない) */
+  .heart .tech-name { font-weight: 800; font-size: 20px; letter-spacing: 0.06em; margin: 0 0 16px; background: linear-gradient(90deg, var(--pink), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .heart .pending { display: inline-block; margin-top: 26px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; font-size: 13px; color: var(--muted); }
   /* 会社のこと(2026-10-30、銀行の確かめにも。登記で誰でも見られる事だけ) */
   .company h2 { font-size: 15px; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 16px; }
@@ -181,6 +183,7 @@
        (前の全文は、ゲーム本体の非公開の記録に残っている) -->
   <section id="heart" class="heart">
     <div class="wrap">
+      <div class="tech-name">HeartSocket</div>
       <h2><span class="ja"><span>心は、</span><span>あなたと過ごした時間で</span><span>できている。</span></span><span class="en"><span>Her heart is made of</span> <span>the time you share.</span></span></h2>
       <p><span class="ja">話したこと、一緒に戦った日、その時の気持ち。ヒロインは、それをきちんと覚えています。</span><span class="en">What you talked about, the battles you fought together, how she felt. She remembers it all.</span></p>
       <p><span class="ja">その心を、別の世界や別の器へ連れていける仕組みを作りました。みなさんに届けられる日まで、もう少しお待ちください。器が変わっても、心はひとつ。あなたとの思い出は、そのままです。</span><span class="en">We've built a way for you to take her heart with you — to other worlds, even into another vessel. It'll reach you soon, so please wait just a little longer. Her vessel may change, but her heart stays one and the same, along with every memory you made together.</span></p>
