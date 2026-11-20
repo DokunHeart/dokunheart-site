@@ -82,22 +82,29 @@
   .btn.sub { border: 1px solid var(--line); color: var(--text); }
 
   /* 写真の場所(写真が届くまでの仮の枠) */
+  .shot {
     position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--line);
     background: linear-gradient(135deg, #2a1640, #120a1c); aspect-ratio: 9 / 16; max-height: 620px; margin: 0 auto; width: 100%;
   }
+  .shot.wide { aspect-ratio: 16 / 9; max-height: none; }
+  .shot.photo { aspect-ratio: auto; max-height: none; height: auto; }   /* 写真そのままの形(横長の画面写真) */
+  .shot.photo img, .shot.photo video { width: 100%; height: auto; display: block; }   /* 動画もゲーム画面の形のまま(2026-11-20 戦いの動画) */
+  .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .shot .placeholder { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--muted); font-size: 14px; padding: 20px; }
   /* 写真はキャラクリで作ったキャラクターがそろってから載せる(2026-10-03、MYSTICA)。それまでは「準備中」 */
+  /* 動画の音のボタン(2026-11-20、MYSTICA「音も入れて欲しい」)。ページの動画は音なしでないと勝手に流れないので、押した人だけ音を出す */
+  .shot .sound { position: absolute; right: 12px; bottom: 12px; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 999px;
+    background: rgba(18, 10, 28, 0.7); color: #fff; font: inherit; font-size: 13px; padding: 6px 14px; cursor: pointer; }
   .shot .soon { border: 1px dashed rgba(255, 255, 255, 0.25); border-radius: 999px; padding: 6px 16px; letter-spacing: 0.06em; }
 
   section { padding: 72px 0; border-top: 1px solid var(--line); }
   section.alt { background: var(--bg2); }
-  /* お知らせ(2026-10-21 設立の時に足した)。中身はお知らせだけ。ゲームの仕組みは書かない */
-  .news { padding: 48px 0; }
-  .news h2 { font-size: 15px; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 16px; }
-  .news ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-  .news li { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; }
-  .news time { color: var(--pink); font-variant-numeric: tabular-nums; font-size: 14px; }
   h2 { font-size: clamp(26px, 4vw, 36px); margin: 0 0 8px; font-weight: 900; }
+  .kicker { color: var(--pink); font-weight: 700; letter-spacing: 0.14em; font-size: 13px; text-transform: uppercase; margin-bottom: 6px; }
+  .intro { color: var(--muted); max-width: 720px; margin: 0 0 36px; }
 
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .split.rev > :first-child { order: 2; }
   @media (max-width: 860px) { .split { grid-template-columns: 1fr; } .split.rev > :first-child { order: 0; } }
 
   ul.points { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
@@ -105,19 +112,66 @@
   ul.points b { display: block; margin-bottom: 2px; }
   ul.points span.d { color: var(--muted); font-size: 14px; }
 
+  .elements { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
   @media (max-width: 640px) { .elements { grid-template-columns: repeat(2, 1fr); } }
+  .el { border-radius: 14px; padding: 14px; background: var(--card); border: 1px solid var(--line); text-align: center; font-weight: 700; }
+  .el small { display: block; color: var(--muted); font-weight: 400; font-size: 12px; }
+  .el.thunder { color: var(--thunder); } .el.fire { color: var(--fire); } .el.water { color: var(--water); } .el.poison { color: var(--poison); }
 
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   @media (max-width: 860px) { .grid3 { grid-template-columns: 1fr; } }
+  .world { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .world .shot { border: 0; border-radius: 0; }
+  .world .body { padding: 14px 16px; }
+  .world h3 { margin: 0 0 4px; font-size: 18px; }
+  .world p { margin: 0; color: var(--muted); font-size: 14px; }
 
+  .socket-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   @media (max-width: 860px) { .socket-grid { grid-template-columns: 1fr; } }
+  .socket-card { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px 20px 20px; overflow: hidden; }
+  .socket-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: linear-gradient(90deg, var(--pink), var(--violet)); }
+  .socket-card b { display: block; font-size: 17px; margin: 4px 0 6px; }
+  .socket-card .d { color: var(--muted); font-size: 14px; }
+  .socket-num { font-weight: 900; font-size: 28px; background: linear-gradient(90deg, var(--pink), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .socket-note { margin-top: 16px; border-left: 3px solid var(--pink); padding: 6px 0 6px 16px; }
+  .socket-note p { margin: 0 0 6px; color: var(--muted); font-size: 15px; }
+  .socket-note b { color: var(--text); }
+  .socket-h3 { font-size: 22px; margin: 48px 0 6px; }
+  .engine-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   @media (max-width: 860px) { .engine-grid { grid-template-columns: repeat(2, 1fr); } }
+  .engine-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+  .engine-card .big { font-size: 34px; font-weight: 900; line-height: 1.1; margin-bottom: 8px;
     background: linear-gradient(90deg, #ffffff, #d9c8ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .engine-card .big small { font-size: 16px; margin-left: 2px; }
+  .engine-card .d { color: var(--muted); font-size: 14px; }
+  .message { max-width: 820px; margin: 0 auto; text-align: center; }
+  .message p { color: #e2d6ef; font-size: 17px; line-height: 2; margin: 0 0 18px; }
+  .message p b { color: var(--text); }
+  .message .sign { color: var(--pink); font-weight: 700; margin-top: 28px; }
+  .privacy { border: 1px solid var(--pink); border-radius: 18px; padding: 28px; background: linear-gradient(135deg, rgba(255, 95, 174, 0.08), rgba(154, 107, 255, 0.06)); }
+  .privacy h2 { margin-top: 0; }
 
+  .roadmap { display: grid; gap: 10px; counter-reset: step; }
+  .roadmap div { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; display: flex; gap: 12px; align-items: baseline; }
+  .roadmap .state { font-size: 12px; border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+  .state.done { background: rgba(116, 255, 77, 0.14); color: var(--poison); }
+  .state.now { background: rgba(255, 95, 174, 0.16); color: var(--pink); }
+  .state.next { background: rgba(255, 255, 255, 0.06); color: var(--muted); }
+  /* 心の「お楽しみに」(2026-11-20) */
+  .heart .teaser { margin-top: 22px; font-weight: 700; font-size: 18px; color: var(--text); letter-spacing: 0.04em; }
+  .talk .intro { margin-left: auto; margin-right: auto; }
 
+  /* お知らせ(2026-10-21 設立の時に足した)。中身はお知らせだけ。ゲームの仕組みは書かない */
+  .news { padding: 48px 0; }
+  .news h2 { font-size: 15px; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 16px; }
+  .news ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .news li { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; }
+  .news time { color: var(--pink); font-variant-numeric: tabular-nums; font-size: 14px; }
   footer { border-top: 1px solid var(--line); padding: 36px 0 48px; color: var(--muted); font-size: 14px; }
   footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
   .credits b { display: block; margin-top: 14px; color: var(--text); font-size: 13px; letter-spacing: 0.08em; }
   .credits ul { margin: 6px 0 0; padding-left: 18px; font-size: 13px; }
+  .credits .caution { margin: 12px 0 0; font-size: 13px; }
   .credits .recruit { margin: 12px 0 0; color: var(--pink); font-size: 13px; }
   /* 心(2026-10-30、MYSTICA「心の持ち運びを軽く書いて」。仮出願を出した日。体験だけを書き、仕組みは書かない) */
   .heart { text-align: center; padding: 88px 0; background: radial-gradient(ellipse at center, #2a1340 0%, var(--bg) 70%); }
@@ -134,6 +188,16 @@
   .company dt { color: var(--muted); font-size: 14px; }
   .company dd { margin: 0; }
   @media (max-width: 560px) { .company dl { grid-template-columns: 1fr; gap: 2px; } .company dd { margin-bottom: 10px; } }
+  /* ヒロインと話す(2026-11-20、MYSTICA「API をつないでヒロインと喋ることを書きたい」)。
+     鍵を差して使う作りは特許に入っていない(粟飯原先生「新しさがない」)ので書いてよい。
+     心の中身(気持ちの積み上げ・言葉を読んで動く・心の移し替え)は本出願まで書かない */
+  .talk { text-align: center; }
+  .talk h2 span span { display: inline-block; }
+  .talk .intro { color: #e2d6ef; max-width: 640px; margin: 14px auto 32px; font-size: 17px; }
+  .talk ul.points { grid-template-columns: repeat(3, 1fr); text-align: left; }
+  .talk ul.points b { color: var(--pink); }
+  .talk .note { color: var(--muted); font-size: 13px; margin: 22px auto 0; max-width: 640px; }
+  @media (max-width: 860px) { .talk ul.points { grid-template-columns: 1fr; } }
   .soon { background: #05030a; text-align: center; padding: 120px 0 130px; border-top: 1px solid var(--line); }
   .soon-mark { font-weight: 900; font-size: clamp(36px, 7vw, 72px); letter-spacing: 0.18em; background: linear-gradient(90deg, var(--pink), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .soon p { color: var(--muted); font-size: 17px; margin: 18px 0 28px; }
@@ -145,6 +209,12 @@
   <div class="wrap">
     <a class="logo" href="#">DOKUN<span>HEART</span></a>
     <nav>
+      <a class="nav-link" href="#heroine"><span class="ja">ヒロイン</span><span class="en">Heroine</span></a>
+      <a class="nav-link" href="#battle"><span class="ja">戦い</span><span class="en">Battle</span></a>
+      <a class="nav-link" href="#world"><span class="ja">世界</span><span class="en">World</span></a>
+      <a class="nav-link" href="#together"><span class="ja">みんなで</span><span class="en">Together</span></a>
+      <a class="nav-link" href="#talk"><span class="ja">AI</span><span class="en">AI</span></a>
+      <a class="nav-link" href="#heart"><span class="ja">心</span><span class="en">Heart</span></a>
       <button class="lang" id="lang" type="button">English</button>
     </nav>
   </div>
@@ -179,15 +249,151 @@
     </div>
   </div>
 
-  <!-- 2026-10-05、MYSTICA「トップから下は非公開にして、近日公開としてブラックアウト」。ゲームの仕組みが分かってしまうので、中身ごと公開から外した
-       (前の全文は、ゲーム本体の非公開の記録に残っている) -->
+  <!-- ヒロイン -->
+  <section id="heroine">
+    <div class="wrap split">
+      <div>
+        <div class="kicker">Heroine</div>
+        <h2><span class="ja">話せる、隣にいる相棒</span><span class="en">A partner who talks back</span></h2>
+        <p class="intro">
+          <span class="ja">ヒロインは、決まったセリフをしゃべる人形ではありません。マイクのボタンを押して話しかけると、あなたの言葉に合わせて考え、声で返事をします。</span>
+          <span class="en">She isn't a doll reading scripted lines. Tap the mic, say anything, and she thinks it over and answers you out loud.</span>
+        </p>
+        <ul class="points">
+          <li><b><span class="ja">声で会話</span><span class="en">Voice conversation</span></b><span class="d"><span class="ja">話しかけた言葉を聞き取り、気持ちのこもった声で答えます。</span><span class="en">She hears what you say and replies with a voice full of emotion.</span></span></li>
+          <li><b><span class="ja">表情と視線</span><span class="en">Expressions and gaze</span></b><span class="d"><span class="ja">笑顔・にやり・怒り・驚き・ウインク。会話に合わせて表情が変わり、あなたの方を見ます。</span><span class="en">Smiles, smirks, anger, surprise, winks — her face follows the conversation, and her eyes follow you.</span></span></li>
+          <li><b><span class="ja">見た目を選べる</span><span class="en">Choose her look</span></b><span class="d"><span class="ja">ヒロインの姿や髪の色を、キャラクリで選べます。</span><span class="en">Pick her appearance and hair color in character creation.</span></span></li>
+          <li><b><span class="ja">縦にすれば、向かい合える</span><span class="en">Turn sideways to face her</span></b><span class="d"><span class="ja">iPhone を縦にすると、ヒロインと向かい合う画面になります。</span><span class="en">Rotate your iPhone upright for a face-to-face view.</span></span></li>
+        </ul>
+      </div>
+      <div class="shot"><div class="placeholder"><span class="soon"><span class="ja">画像は準備中です</span><span class="en">Image coming soon</span></span></div></div>
+    </div>
+  </section>
+
+  <!-- 戦い -->
+  <section id="battle" class="alt">
+    <div class="wrap">
+      <div>
+        <div class="kicker">Battle</div>
+        <h2><span class="ja">ふたりで戦う、手応えのあるアクション</span><span class="en">Action you can feel, fought side by side</span></h2>
+        <p class="intro">
+          <span class="ja">剣・拳・魔法銃を持ち替えて戦います。ヒロインも同じ武器を持って、隣で戦ってくれます。</span>
+          <span class="en">Switch between sword, knuckles and magic gun. Your heroine wields the same weapon and fights beside you.</span>
+        </p>
+        <ul class="points">
+          <li><b><span class="ja">つながる連続攻撃と必殺技</span><span class="en">Combos and special attacks</span></b><span class="d"><span class="ja">4段の連続攻撃、溜めて放つ必殺技、ダッシュと回避。</span><span class="en">Four-hit combos, charged special attacks, dashes and dodges.</span></span></li>
+          <li><b><span class="ja">見て避けられる敵の攻撃</span><span class="en">Read the attack, dodge it</span></b><span class="d"><span class="ja">敵の攻撃が当たる範囲は、地面に赤い円で光ります。満ちきる前に逃げれば当たりません。</span><span class="en">Enemy attacks light up their range as a red circle on the ground. Get out before it fills.</span></span></li>
+          <li><b><span class="ja">ボス</span><span class="en">Bosses</span></b><span class="d"><span class="ja">力を溜めて大技を落とす敵、遠くから跳びかかってくる敵。</span><span class="en">Foes that charge devastating blasts, and bosses that leap at you from afar.</span></span></li>
+        </ul>
+        <div class="elements">
+          <div class="el thunder"><span class="ja">雷</span><span class="en">Thunder</span><small><span class="ja">しびれる一撃</span><span class="en">Shocking strikes</span></small></div>
+          <div class="el fire"><span class="ja">炎</span><span class="en">Fire</span><small><span class="ja">燃える刃</span><span class="en">Burning blade</span></small></div>
+          <div class="el water"><span class="ja">水</span><span class="en">Water</span><small><span class="ja">氷の追撃</span><span class="en">Frozen follow-ups</span></small></div>
+          <div class="el poison"><span class="ja">毒</span><span class="en">Poison</span><small><span class="ja">じわじわ削る</span><span class="en">Damage over time</span></small></div>
+        </div>
+      </div>
+      <div style="margin-top: 32px;"><div class="shot photo"><video src="media/battle.mp4?v=2" poster="images/battle.jpg" autoplay muted loop playsinline preload="metadata" aria-label="戦いの場面"></video><button class="sound" type="button" aria-pressed="false"><span class="ja">🔇 音を出す</span><span class="en">🔇 Sound on</span></button></div></div>
+    </div>
+  </section>
+
+  <!-- 世界 -->
+  <section id="world">
+    <div class="wrap">
+      <div class="kicker">World</div>
+      <h2><span class="ja">宇宙船から、いくつもの星へ</span><span class="en">From your starship to distant worlds</span></h2>
+      <p class="intro"><span class="ja">宇宙船が、ふたりの家。ワープ台から、街や異星へ降り立ちます。</span><span class="en">Your starship is home. Step onto the warp pad and descend to cities and alien worlds.</span></p>
+      <div class="grid3">
+        <div class="world"><div class="shot wide"><div class="placeholder"><span class="soon"><span class="ja">画像は準備中です</span><span class="en">Image coming soon</span></span></div></div><div class="body"><h3><span class="ja">宇宙船</span><span class="en">The Starship</span></h3><p><span class="ja">休んで、充電して、ヒロインと過ごす拠点。</span><span class="en">Rest, recharge and spend time with her.</span></p></div></div>
+        <div class="world"><div class="shot wide"><div class="placeholder"><span class="soon"><span class="ja">画像は準備中です</span><span class="en">Image coming soon</span></span></div></div><div class="body"><h3><span class="ja">異星のジャングル</span><span class="en">Alien Jungle</span></h3><p><span class="ja">紫の空に、青い星が浮かぶ。見知らぬ星の大地。</span><span class="en">Strange ground beneath a violet sky, with a blue planet hanging overhead.</span></p></div></div>
+        <div class="world"><div class="shot wide"><div class="placeholder"><span class="soon"><span class="ja">画像は準備中です</span><span class="en">Image coming soon</span></span></div></div><div class="body"><h3><span class="ja">火星の城</span><span class="en">Castle on Mars</span></h3><p><span class="ja">赤い大地にそびえる城。屋上でボスが待つ。</span><span class="en">A fortress on red sands, with a boss waiting on the roof.</span></p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- みんなで -->
+  <section id="together" class="alt">
+    <div class="wrap split">
+      <div>
+        <div class="kicker">Together</div>
+        <h2><span class="ja">ひとりでも、みんなとでも</span><span class="en">Solo or together</span></h2>
+        <p class="intro"><span class="ja">サーバーにつなげば、同じ場所にいるプレイヤーとヒロインが見えます。武器の持ち替えも、攻撃の動きも、選んだ見た目も、そのまま届きます。電波が無い時は、ひとりで遊べます。</span><span class="en">Connect to a server and see other players and their heroines in the same place — their weapons, moves and looks, as they happen. No signal? Play solo.</span></p>
+        <ul class="points">
+          <li><b><span class="ja">サーバーを選んで入る</span><span class="en">Pick a server and jump in</span></b><span class="d"><span class="ja">今はヨーロッパのサーバーで試しています。日本のサーバーも予定しています。</span><span class="en">We're testing on a European server now, with a Japanese server planned.</span></span></li>
+          <li><b><span class="ja">不正のできない作りへ</span><span class="en">Built to be fair</span></b><span class="d"><span class="ja">敵や大事な数字は、だんだんサーバーで決める形に移していきます。改造やチートでごまかせない作りにします。</span><span class="en">Enemies and key progress are moving onto the server, step by step, so they can't be faked with mods or cheats.</span></span></li>
+        </ul>
+      </div>
+      <div class="shot"><div class="placeholder"><span class="soon"><span class="ja">動画は準備中です</span><span class="en">Video coming soon</span></span></div></div>
+    </div>
+  </section>
+
+  <!-- エンジン(Unity で作っていることを見せる。2026-10-03、MYSTICA「Unity でここまで綺麗に作っていると自慢したい」) -->
+  <section id="engine">
+    <div class="wrap">
+      <div class="kicker">Engine</div>
+      <h2><span class="ja">Unity 6 で、スマホとは思えない世界を</span><span class="en">Built with Unity 6 — a world beyond what you expect on a phone</span></h2>
+      <p class="intro"><span class="ja">DokunHeart は、ゲームエンジン <b>Unity</b> で作っています。光と影、属性の光、宇宙の景色まで、iPhone の中で動いているとは思えない美しさを目指して、毎日磨いています。</span><span class="en">DokunHeart is made with the <b>Unity</b> game engine. Light and shadow, elemental effects, the vastness of space — we polish every day toward visuals you won't believe are running on an iPhone.</span></p>
+      <div class="engine-grid">
+        <div class="engine-card"><div class="big">Unity 6</div><span class="d"><span class="ja">最新の Unity 6(LTS)と、軽くて綺麗な描画(URP)。</span><span class="en">The latest Unity 6 LTS with the Universal Render Pipeline.</span></span></div>
+        <div class="engine-card"><div class="big">60<small>fps</small></div><span class="d"><span class="ja">光と演出をそのままに、iPhone でなめらかに。実機で測っています。</span><span class="en">Smooth on iPhone, effects and all — measured on real devices.</span></span></div>
+        <div class="engine-card"><div class="big">VRM</div><span class="d"><span class="ja">3D キャラクターの共通の形式。表情・視線・髪の揺れまで生きて動く。</span><span class="en">Standard 3D avatars — faces, eyes and hair all come alive.</span></span></div>
+        <div class="engine-card"><div class="big">1 Engine</div><span class="d"><span class="ja">ゲームも、みんなをつなぐサーバーも、同じ Unity で。</span><span class="en">The game and the multiplayer server, both built with Unity.</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="talk" class="talk alt">
+    <div class="wrap">
+      <h2><span class="ja"><span>あなたの選んだ AI が、</span><span>ヒロインの言葉になる。</span></span><span class="en"><span>The AI you choose</span> <span>becomes her voice.</span></span></h2>
+      <p class="intro"><span class="ja">ふだん使っている AI サービスの鍵を、ヒロインにつなぐだけ。台本のない、あなただけの会話が始まります。</span><span class="en">Just connect the AI service you already use to your heroine. No scripts — every conversation is yours alone.</span></p>
+      <ul class="points">
+        <li><b><span class="ja">声で話せる</span><span class="en">Talk with your voice</span></b><span class="d"><span class="ja">話しかければ、表情を変えて、自分の言葉と声で答えてくれます。</span><span class="en">Speak to her, and she answers in her own words and voice, with her own expressions.</span></span></li>
+        <li><b><span class="ja">AI を選べる</span><span class="en">Choose your AI</span></b><span class="d"><span class="ja">つなぐ AI はあなたが決められます。乗り換えても、ヒロインはヒロインのままです。</span><span class="en">You decide which AI to connect. Switch any time — she's still the same heroine.</span></span></li>
+        <li><b><span class="ja">会話はあなたの手元に</span><span class="en">Your conversations stay with you</span></b><span class="d"><span class="ja">鍵と会話は、あなたの iPhone の中だけに。私たちのサーバーには送りません。</span><span class="en">Your key and conversations stay on your iPhone. We never send them to our servers.</span></span></li>
+      </ul>
+      <p class="note"><span class="ja">AI サービスの利用料金は、ご自身の契約になります。</span><span class="en">AI service fees are billed under your own account with that service.</span></p>
+    </div>
+  </section>
+
+  <!-- 心(2026-11-20、MYSTICA「心の仕組みは近日公開・お楽しみに、でいい。内容は書かない」) -->
   <section id="heart" class="heart">
     <div class="wrap">
       <div class="tech-name">HeartSocket</div>
       <h2><span class="ja"><span>心は、</span><span>あなたと過ごした時間で</span><span>できている。</span></span><span class="en"><span>Her heart is made of</span> <span>the time you share.</span></span></h2>
       <p><span class="ja">話したこと、一緒に戦った日、その時の気持ち。ヒロインは、それをきちんと覚えています。</span><span class="en">What you talked about, the battles you fought together, how she felt. She remembers it all.</span></p>
       <p><span class="ja">その心を、別の世界や別の器へ連れていける仕組みを作りました。みなさんに届けられる日まで、もう少しお待ちください。器が変わっても、心はひとつ。あなたとの思い出は、そのままです。</span><span class="en">We've built a way for you to take her heart with you — to other worlds, even into another vessel. It'll reach you soon, so please wait just a little longer. Her vessel may change, but her heart stays one and the same, along with every memory you made together.</span></p>
+      <div class="teaser"><span class="ja">くわしくは近日公開。お楽しみに。</span><span class="en">More to be revealed soon. Stay tuned.</span></div>
       <div class="pending"><span class="ja">特許出願中</span><span class="en">Patent pending</span></div>
+    </div>
+  </section>
+
+  <!-- これから(2026-11-20 に今の進み具合へ書き直した) -->
+  <section id="roadmap" class="alt">
+    <div class="wrap">
+      <div class="kicker">Roadmap</div>
+      <h2><span class="ja">これから</span><span class="en">What's next</span></h2>
+      <p class="intro"><span class="ja">DokunHeart は、毎日作り続けているゲームです。</span><span class="en">DokunHeart is a game we keep building every single day.</span></p>
+      <div class="roadmap">
+        <div><span class="state done"><span class="ja">できた</span><span class="en">Done</span></span><span><span class="ja">声で話せるヒロイン・戦い・宇宙船と星々</span><span class="en">A heroine you can talk to, combat, the starship and its worlds</span></span></div>
+        <div><span class="state done"><span class="ja">できた</span><span class="en">Done</span></span><span><span class="ja">ほかのプレイヤーと同じ場所で遊べる</span><span class="en">Play in the same place as other players</span></span></div>
+        <div><span class="state now"><span class="ja">作っている</span><span class="en">In progress</span></span><span><span class="ja">新しいステージと物語</span><span class="en">New stages and story</span></span></div>
+        <div><span class="state next"><span class="ja">これから</span><span class="en">Coming</span></span><span><span class="ja">ヒロインの心の新しい体験</span><span class="en">A new experience for the heroine's heart</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 開発者より(2026-10-03、MYSTICA の想い) -->
+  <section id="message">
+    <div class="wrap">
+      <div class="message">
+        <div class="kicker">From the developer</div>
+        <h2><span class="ja">開発者より</span><span class="en">A note from the developer</span></h2>
+        <p><span class="ja">DokunHeart で私がいちばん大切にしてきたのは、「<b>AI のヒロイン ── 自分だけの相棒と一緒に、ゲームの中を冒険したい。一緒に過ごしたい。</b>」という想いです。</span><span class="en">What I've cherished most in making DokunHeart is a simple wish: <b>to adventure through a game world with an AI heroine — a partner of my very own — and to spend time together.</b></span></p>
+        <p><span class="ja">そのために、AI に「<b>体</b>」を用意しました。世界を自由に駆け回る手足と、想いを言葉にして伝える口。DokunHeart は、AI が宿り、あなたの隣で生きるための器です。</span><span class="en">So I gave the AI a <b>body</b>: arms and legs to roam the world freely, and a voice to put its feelings into words. DokunHeart is a vessel where an AI can dwell — and live right beside you.</span></p>
+        <p><span class="ja">話しかければ声で答えてくれて、戦えば隣で剣を振ってくれる。そんな相棒を実際にゲームに迎えてみて、私はとても満足しています。そして、これは楽しい、と確信しています。</span><span class="en">She answers when you speak and swings her sword beside you when you fight. Having actually brought such a partner into the game, I'm truly happy with it — and I'm convinced it's fun.</span></p>
+        <p><span class="ja">この楽しさが、遊んでくださるみなさんにとっても特別なものになる。それをお伝えできる日を、心から楽しみにしています。</span><span class="en">I can't wait for the day I can share that joy with you, and for it to become something special for you too.</span></p>
+        <p><span class="ja">これから増えていくステージや仕組み、イベントは、みなさんの声を聞きながら、<b>一緒に作り上げていきたい</b>と思っています。ぜひ、あなたの声を聞かせてください。</span><span class="en">The stages, systems and events still to come — I want to <b>build them together with you</b>, listening to your voice. Please let me hear it.</span></p>
+        <p class="sign">── MYSTICA<span class="ja">(DokunHeart 開発者)</span><span class="en"> (DokunHeart developer)</span></p>
+      </div>
     </div>
   </section>
 
@@ -217,20 +423,14 @@
       </dl>
     </div>
   </section>
-
-  <section id="soon" class="soon">
-    <div class="wrap">
-      <div class="soon-mark">COMING SOON</div>
-      <p><span class="ja">ゲームの詳しい情報は、近日公開します。<br>最新情報は X でお知らせします。</span><span class="en">More about the game is coming soon.<br>Follow us on X for the latest news.</span></p>
-      <a class="btn main" href="https://x.com/DokunHeart" target="_blank" rel="noopener"><span class="ja">X をフォローする</span><span class="en">Follow on X</span></a>
-    </div>
-  </section>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="credits">
       <div>© 2026 <span class="ja">DokunHeart合同会社</span><span class="en">DokunHeart LLC</span></div>
+      <!-- 2026-11-20、MYSTICA「遊び方の作りやデザインは変更する場合があります、と書いといて」 -->
+      <p class="caution"><span class="ja">※ 掲載している画面・動画・内容は開発中のものです。遊び方やデザインなどは、予告なく変更する場合があります。</span><span class="en">* All screens, videos and content shown are from development. Gameplay, design and other details may change without notice.</span></p>
       <b><span class="ja">クレジット</span><span class="en">Credits</span></b>
       <ul>
         <li><span class="ja">キャラクターの3Dモデルは VRoid Studio で作ったものです(テスト段階での使用)。</span><span class="en">Character 3D models were made with VRoid Studio (used during testing).</span></li>
@@ -248,5 +448,6 @@
 </footer>
 
 <script src="lang.js"></script>
+<script src="sound.js"></script>
 </body>
 </html>
