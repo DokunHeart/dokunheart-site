@@ -137,13 +137,6 @@
   .socket-note p { margin: 0 0 6px; color: var(--muted); font-size: 15px; }
   .socket-note b { color: var(--text); }
   .socket-h3 { font-size: 22px; margin: 48px 0 6px; }
-  .engine-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  @media (max-width: 860px) { .engine-grid { grid-template-columns: repeat(2, 1fr); } }
-  .engine-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
-  .engine-card .big { font-size: 34px; font-weight: 900; line-height: 1.1; margin-bottom: 8px;
-    background: linear-gradient(90deg, #ffffff, #d9c8ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .engine-card .big small { font-size: 16px; margin-left: 2px; }
-  .engine-card .d { color: var(--muted); font-size: 14px; }
   .message { max-width: 820px; margin: 0 auto; text-align: center; }
   .message p { color: #e2d6ef; font-size: 17px; line-height: 2; margin: 0 0 18px; }
   .message p b { color: var(--text); }
@@ -326,22 +319,7 @@
     </div>
   </section>
 
-  <!-- エンジン(Unity で作っていることを見せる。2026-10-03、MYSTICA「Unity でここまで綺麗に作っていると自慢したい」) -->
-  <section id="engine">
-    <div class="wrap">
-      <div class="kicker">Engine</div>
-      <h2><span class="ja">Unity 6 で、スマホとは思えない世界を</span><span class="en">Built with Unity 6 — a world beyond what you expect on a phone</span></h2>
-      <p class="intro"><span class="ja">DokunHeart は、ゲームエンジン <b>Unity</b> で作っています。光と影、属性の光、宇宙の景色まで、iPhone の中で動いているとは思えない美しさを目指して、毎日磨いています。</span><span class="en">DokunHeart is made with the <b>Unity</b> game engine. Light and shadow, elemental effects, the vastness of space — we polish every day toward visuals you won't believe are running on an iPhone.</span></p>
-      <div class="engine-grid">
-        <div class="engine-card"><div class="big">Unity 6</div><span class="d"><span class="ja">最新の Unity 6(LTS)と、軽くて綺麗な描画(URP)。</span><span class="en">The latest Unity 6 LTS with the Universal Render Pipeline.</span></span></div>
-        <div class="engine-card"><div class="big">60<small>fps</small></div><span class="d"><span class="ja">光と演出をそのままに、iPhone でなめらかに。実機で測っています。</span><span class="en">Smooth on iPhone, effects and all — measured on real devices.</span></span></div>
-        <div class="engine-card"><div class="big">VRM</div><span class="d"><span class="ja">3D キャラクターの共通の形式。表情・視線・髪の揺れまで生きて動く。</span><span class="en">Standard 3D avatars — faces, eyes and hair all come alive.</span></span></div>
-        <div class="engine-card"><div class="big">1 Engine</div><span class="d"><span class="ja">ゲームも、みんなをつなぐサーバーも、同じ Unity で。</span><span class="en">The game and the multiplayer server, both built with Unity.</span></span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="talk" class="talk alt">
+  <section id="talk" class="talk">
     <div class="wrap">
       <h2><span class="ja"><span>あなたの選んだ AI が、</span><span>ヒロインの言葉になる。</span></span><span class="en"><span>The AI you choose</span> <span>becomes her voice.</span></span></h2>
       <p class="intro"><span class="ja">ふだん使っている AI サービスの鍵を、ヒロインにつなぐだけ。台本のない、あなただけの会話が始まります。</span><span class="en">Just connect the AI service you already use to your heroine. No scripts — every conversation is yours alone.</span></p>
@@ -431,12 +409,6 @@
       <div>© 2026 <span class="ja">DokunHeart合同会社</span><span class="en">DokunHeart LLC</span></div>
       <!-- 2026-11-20、MYSTICA「遊び方の作りやデザインは変更する場合があります、と書いといて」 -->
       <p class="caution"><span class="ja">※ 掲載している画面・動画・内容は開発中のものです。遊び方やデザインなどは、予告なく変更する場合があります。</span><span class="en">* All screens, videos and content shown are from development. Gameplay, design and other details may change without notice.</span></p>
-      <b><span class="ja">クレジット</span><span class="en">Credits</span></b>
-      <ul>
-        <li><span class="ja">キャラクターの3Dモデルは VRoid Studio で作ったものです(テスト段階での使用)。</span><span class="en">Character 3D models were made with VRoid Studio (used during testing).</span></li>
-        <li><span class="ja">タイトルの絵は Grok(xAI)を使って作りました。</span><span class="en">Title art created with Grok by xAI.</span></li>
-        <li><span class="ja">ゲームエンジン: Unity。Unity は Unity Technologies(またはその関連会社)の商標です。</span><span class="en">Game engine: Unity. Unity is a trademark of Unity Technologies or its affiliates.</span></li>
-      </ul>
       <!-- 2026-10-05、MYSTICA「このゲームを一緒に開発してくれる人も募集していますと付けておいて」 -->
       <p class="recruit"><span class="ja">DokunHeart を一緒に開発してくださる仲間も募集しています。X の DM か メールでご連絡ください。</span><span class="en">We're also looking for teammates to develop DokunHeart together. Reach us by X DM or email.</span></p>
     </div>
